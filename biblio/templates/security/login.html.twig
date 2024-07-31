@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Log in!{% endblock %}
+
+{% block body %}
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <h1 class="h3 mb-3 font-weight-normal text-center">Please sign in</h1>
+
+                {% if error %}
+                    <div class="alert alert-danger" role="alert">
+                        {{ error.messageKey|trans(error.messageData, 'security') }}
+                    </div>
+                {% endif %}
+
+                {% if app.user %}
+                    <div class="alert alert-info" role="alert">
+                        You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}" class="btn btn-link">Logout</a>
+                    </div>
+                {% endif %}
+
+                <form method="post">
+                    <div class="mb-3">
+                        <label for="inputPseudo" class="form-label">Pseudo</label>
+                        <input type="text" value="{{ last_username }}" name="pseudo" id="inputPseudo" class="form-control" autocomplete="username" required autofocus>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="inputPassword" class="form-label">Password</label>
+                        <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
+                    </div>
+
+                    <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+
+                    <button class="btn btn-lg btn-primary w-100 mb-3" type="submit">Sign in</button>
+                </form>
+
+                <div class="text-center">
+                    <p>Don't have an account?</p>
+                    <a href="{{ path('app_register') }}" class="btn btn-secondary">Register</a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

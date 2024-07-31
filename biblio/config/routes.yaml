@@ -1,0 +1,8 @@
+controllers:
+    resource: '../src/Controller/'
+    type: annotation
+
+admin_list_abonne:
+    path: /admin/list
+    controller: App\Controller\AdminController::listAbonne
+    methods: [GET]

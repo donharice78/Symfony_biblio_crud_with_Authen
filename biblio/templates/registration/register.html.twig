@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Register{% endblock %}
+
+{% block body %}
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <h1 class="h3 mb-3 font-weight-normal text-center">Register</h1>
+
+                {{ form_errors(registrationForm) }}
+
+                {{ form_start(registrationForm, {'attr': {'class': 'form-signup'}}) }}
+                    <div class="mb-3">
+                        {{ form_row(registrationForm.pseudo, {
+                            'attr': {'class': 'form-control'},
+                            'label': 'Pseudo'
+                        }) }}
+                    </div>
+
+                    <div class="mb-3">
+                        {{ form_row(registrationForm.plainPassword, {
+                            'attr': {'class': 'form-control'},
+                            'label': 'Password'
+                        }) }}
+                    </div>
+
+                    <div class="mb-3 form-check">
+                        {{ form_widget(registrationForm.agreeTerms, {
+                            'attr': {'class': 'form-check-input'}
+                        }) }}
+                        {{ form_label(registrationForm.agreeTerms, 'I agree to the terms', {'attr': {'class': 'form-check-label'}}) }}
+                    </div>
+
+                    <button type="submit" class="btn btn-primary w-100">Register</button>
+                {{ form_end(registrationForm) }}
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Livre Index{% endblock %}
+
+{% block body %}
+    <div class="container mt-4">
+        <h1 class="mb-4">Livre Index</h1>
+
+        {% if is_granted('ROLE_USER') %}
+            <a href="{{ path('app_livre_new') }}" class="btn btn-primary mb-3">Create New</a>
+        {% endif %}
+
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Titre</th>
+                    <th>Auteur</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for livre in livres %}
+                <tr>
+                    <td>{{ livre.id }}</td>
+                    <td>{{ livre.titre }}</td>
+                    <td>{{ livre.auteur }}</td>
+                    <td>
+                        <a href="{{ path('app_livre_show', {'id': livre.id}) }}" class="btn btn-info btn-sm">Show</a>
+                        {% if is_granted('ROLE_USER') %}
+                            <a href="{{ path('app_livre_edit', {'id': livre.id}) }}" class="btn btn-warning btn-sm">Edit</a>
+                        {% endif %}
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="4" class="text-center">No records found</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
+

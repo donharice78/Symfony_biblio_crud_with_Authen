@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des abonnés{% endblock %}
+
+{% block body %}
+    <div class="container mt-4">
+        <h1 class="mb-4">Modifiez les informations des abonnés</h1>
+
+        <!-- Form start -->
+        {{ form_start(userForm, {'attr': {'class': 'needs-validation', 'novalidate': 'novalidate'}}) }}
+
+        <!-- Render form fields with Bootstrap classes -->
+        {{ form_row(userForm.pseudo, {'attr': {'class': 'form-control'}}) }}
+        {{ form_row(userForm.roles, {'attr': {'class': 'form-check'}}) }}
+
+        <!-- Add a submit button -->
+      
+
+        <!-- Form end -->
+        {{ form_end(userForm) }}
+    </div>
+{% endblock %}
